@@ -1,0 +1,14 @@
+tc,tc,tc,tc,tc,tc,tc,tc,tc,tc,tc,tc,tc,tc
+lc,wtl,wmt,wmt,wmt,wtr,v,wtl,wmt,wmt,wmt,wmt,wtr,rc
+lc,wbl,wmb,wmb,wmb,wbr,v,wbl,wmb,wmb,wmb,wmb,wbr,rc
+lc, , , , , ,v, , , , , , ,rc
+lc, , , , , ,v, , , , , , ,rc
+lc, , , , , ,c,h,h, , ,h,h,rc
+lc, , , , , ,wtl,wmt,wmt, , ,wmt,wtr,rc
+lc, , , , , ,wbl,wmb,wmb, , ,wmb,wbr,rc
+lc, , , , , , , , , , , , ,rc
+lc, , , , , , , , , , , , ,rc
+lc, , , , , , , , , , , , ,rc
+lc,h,h,h,h,h, , ,h,h,h,h,h,rc
+lc,wtl,wmt,wmt,wmt,wtr, , ,wtl,wmt,wmt,wmt,wtr,rc
+lc,wbl,wmb,wmb,wmb,wbr, , ,wbl,wmb,wmb,wmb,wbr,rc
