@@ -1,6 +1,6 @@
 from FSMs import ScreenManagerFSM
 from . import TextEntry, EventMenu
-from utils import vec, RESOLUTION
+from utils import vec, RESOLUTION, SoundManager
 from gameObjects.engine import GameEngine
 
 from pygame.locals import *
@@ -8,9 +8,9 @@ from pygame.locals import *
 
 class ScreenManager(object):
 
-    def __init__(self):
+    def __init__(self, level="levelOneText.txt"):
 
-        self.game = GameEngine()  # Add your game engine here!
+        self.game = GameEngine(level)  # Add your game engine here!
         self.state = ScreenManagerFSM(self)
         self.pausedText = TextEntry(vec(0, 0), "Paused")
 
@@ -31,7 +31,7 @@ class ScreenManager(object):
     def draw(self, drawSurf):
         if self.state.isInGame():
             self.game.draw(drawSurf)
-
+            self.game.drawBack(drawSurf)
             if self.state == "paused":
                 self.pausedText.draw(drawSurf)
 
@@ -39,6 +39,8 @@ class ScreenManager(object):
             self.mainMenu.draw(drawSurf)
 
     def handleEvent(self, event):
+        sm = SoundManager.getInstance()
+
         if self.state in ["game", "paused"]:
             if event.type == KEYDOWN and event.key == K_m:
                 self.state.quitGame()
@@ -52,11 +54,12 @@ class ScreenManager(object):
 
             if choice == "start":
                 self.state.startGame()
+                sm.playBGM("Goblin_Tinker_Soldier_Spy.mp3")
             elif choice == "exit":
                 return "exit"
 
-    def update(self, seconds, map=None):
+    def update(self, seconds):
         if self.state == "game":
-            self.game.update(seconds, map)
+            self.game.update(seconds)
         elif self.state == "mainMenu":
             self.mainMenu.update(seconds)

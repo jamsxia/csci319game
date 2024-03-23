@@ -10,8 +10,8 @@ from os.path import join
 
 
 class Kirby(Mobile):
-    def __init__(self, position, img="kirby.png"):
-        super().__init__(position, img)
+    def __init__(self, position, img="kirby.png", barrier=None, door=None):
+        super().__init__(position, img, barrier, door)
 
         self.hatOffset = vec(-3, -6)
         self.hat = Drawable(position, "hat.png")
@@ -51,9 +51,11 @@ class Kirby(Mobile):
                 self.UD.increase()
 
             elif event.key == K_LEFT:
+                self.flipImage[0] = True
                 self.LR.decrease()
 
             elif event.key == K_RIGHT:
+                self.flipImage[0] = False
                 self.LR.increase()
 
             elif event.key == K_SPACE:
@@ -72,12 +74,12 @@ class Kirby(Mobile):
             elif event.key == K_RIGHT:
                 self.LR.stop_increase()
 
-    def update(self, seconds, map=None):
+    def update(self, seconds):
         self.LR.update(seconds)
         self.UD.update(seconds)
         # do something here changes inheriting to 2 if collide with other inheriting objects
         # THINKING  of having a list of all inheriting objects and take it as one of the argument, the same treatment as map
-        super().update(seconds, map)
+        super().update(seconds)
         self.hat.position = self.hatOffset+self.position
         self.ghost.position = self.position
 

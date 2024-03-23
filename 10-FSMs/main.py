@@ -17,9 +17,10 @@ def main():
     # Get the screen
     screen = pygame.display.set_mode(list(map(int, UPSCALED)))
     drawSurface = pygame.Surface(list(map(int, RESOLUTION)))
-
+    ##initial_level = "levelOneText.txt"
     gameEngine = ScreenManager()
     # kirby=gameEngine.kirby()
+    '''
     levelOneText = open("levelOneText.txt", 'r')
     levelOneText = [i.split(',')
                     for i in levelOneText.readlines()]
@@ -45,6 +46,7 @@ def main():
         "tiles.png", (4, 4))
     ceilDefaultImage = SpriteManager.getInstance().getSprite(
         "tiles.png", (1, 3))
+    '''
     RUNNING = True
     # print(textMatching[" "] == None)
     while RUNNING:
@@ -52,24 +54,6 @@ def main():
         gameEngine.draw(drawSurface)
         # drawSurface.blit(testImage, (0, 16))
         # drawSurface.blit(testImage, (0, 32))
-        for i in range(len(settingImage)):
-            if (levelOneText[i][0] == "lc"):
-                if (levelOneText[i][1] == "wtl" or levelOneText[i][1] == "wbl"):
-                    # print(levelOneText)
-                    drawSurface.blit(wallDefaultImage, (0, i*16))
-                elif (levelOneText[i][1] == "h"):
-                    drawSurface.blit(ceilDefaultImage, (0, i*16))
-            if (levelOneText[i][-1] == "rc\n" or levelOneText[i][-1] == "rc"):
-                if (levelOneText[i][-2] == "wtr" or levelOneText[i][-2] == "wbr"):
-                    # print(levelOneText)
-                    drawSurface.blit(wallDefaultImage, (13*16, i*16))
-                elif (levelOneText[i][-2] == "h"):
-                    drawSurface.blit(ceilDefaultImage, (13*16, i*16))
-
-        for i in range(len(settingImage)):
-            for j in range(len(settingImage[0])):
-                drawSurface.blit(settingImage[i][j], (j*16, i*16))
-
         pygame.transform.scale(drawSurface,
                                list(map(int, UPSCALED)),
                                screen)
@@ -90,7 +74,7 @@ def main():
 
         gameClock.tick(60)
         seconds = gameClock.get_time() / 1000
-        gameEngine.update(seconds, levelOneText)
+        gameEngine.update(seconds)
 
     pygame.quit()
 

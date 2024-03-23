@@ -9,6 +9,6 @@ lc, , , , , ,wbl,wmb,wmb, , ,wmb,wbr,rc
 lc, , , , , , , , , , , , ,rc
 lc, , , , , , , , , , , , ,rc
 lc, , , , , , , , , , , , ,rc
-lc,h,h,h,h,h, , ,h,h,h,h,h,rc
-lc,wtl,wmt,wmt,wmt,wtr, , ,wtl,wmt,wmt,wmt,wtr,rc
-lc,wbl,wmb,wmb,wmb,wbr, , ,wbl,wmb,wmb,wmb,wbr,rc
+lc,h,h,h,h, , , ,h,h,h,h,h,rc
+lc,wtl,wmt,wmt,wmt,dtr,dt,dtl,wmt,wmt,wmt,wmt,wtr,rc
+lc,wbl,wmb,wmb,wmb,dbr,db,dbl,wmb,wmb,wmb,wmb,wbr,rc
