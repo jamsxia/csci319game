@@ -180,11 +180,11 @@ class GameEngine(object):
                         else:
                             pass
                             # print(1)
-                            ##self.endGame = 1
+                            self.endGame = 1
                     else:
                         pass
                         # print(2)
-                        ##self.endGame = 1
+                        self.endGame = 1
                 if magnitude(char.velocity) != 0:  # here is the problem
                     # print("do you go here")
                     char.oldVelocity = char.velocity
