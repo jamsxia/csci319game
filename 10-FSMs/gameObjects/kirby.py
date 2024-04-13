@@ -52,10 +52,12 @@ class Kirby(Mobile):
 
             elif event.key == K_LEFT:
                 self.flipImage[0] = True
+                self.ghost.flipImage[0] = True
                 self.LR.decrease()
 
             elif event.key == K_RIGHT:
                 self.flipImage[0] = False
+                self.ghost.flipImage[0] = False
                 self.LR.increase()
 
             elif event.key == K_SPACE:

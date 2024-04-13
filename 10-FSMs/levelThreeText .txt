@@ -3,12 +3,12 @@ lc,wtl,wtr,v, , ,v,wtl,wmt,wmt,wmt,wmt,wtr,rc
 lc,wbl,wbr,v, , ,v,wbl,wmb,wmb,wmb,wmb,wbr,rc
 lc, , ,v, , , , , , , , , ,rc
 lc, , ,v, , , , , , , , , ,rc
-lc, , ,v, , ,c,h, , , , ,h,rc
-lc, , , , , ,wtl,wmt, , , , ,wtr,rc
-lc, , , , , ,wbl,wmb, , , , ,wbr,rc
-lc, , ,v, , , , , , , , , ,rc
-lc, , ,v, , , , , , , , , ,rc
-lc, , ,v, , , , , , , , , ,rc
-lc,h,h,c,h, , , ,h,h,h,h,h,rc
+lc, , ,c,h,h,h,h, , ,h,h,h,rc
+lc, , , , , , , , , , , , ,rc
+lc, , , , , , , , , , , , ,rc
+lc, , ,c,h,h,h,h,h,h,h,h,h,rc
+lc, , , , , , , , , , , , ,rc
+lc, , , , , , , , , , , , ,rc
+lc,h,h,h,h, , , ,h,h,h,h,h,rc
 lc,wtl,wmt,wmt,wmt,dtr,dt,dtl,wmt,wmt,wmt,wmt,wtr,rc
 lc,wbl,wmb,wmb,wmb,dbr,db,dbl,wmb,wmb,wmb,wmb,wbr,rc

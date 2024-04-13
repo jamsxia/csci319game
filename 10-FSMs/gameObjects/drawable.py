@@ -39,7 +39,8 @@ class Drawable(object):
         self.flipImage = [False, False]
 
     def draw(self, drawSurface):
-        blitImage = pygame.transform.flip(self.image, *self.flipImage)
+        blitImage = pygame.transform.flip(
+            self.image, *self.flipImage)  # fsm flipimage
         drawSurface.blit(blitImage, list(
             map(int, self.position - Drawable.CAMERA_OFFSET)))
 

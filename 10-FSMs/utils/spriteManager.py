@@ -45,7 +45,7 @@ class SpriteManager(object):
 
         # A list of images that require to be loaded with a color key
         _COLOR_KEY = ["waddleDee.png", "kirby.png",
-                      "hat.png", "kirby2.png", "1.png"]
+                      "hat.png", "kirby2.png", "1.png", "2.png"]
 
         def __init__(self):
             # Stores the surfaces indexed based on file name

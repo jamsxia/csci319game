@@ -1,42 +1,35 @@
-from . import Kirby, Controllable
+from . import Kirby, Controllable, Inheriting
 import pygame
 from FSMs import EnemyFSM
 from utils import vec, magnitude, scale, rectAdd
 import numpy as np
+from pygame.locals import *
 
 
-class Inheriting(Controllable):
+class BulletInheriting(Inheriting):
     def __init__(self, position, wanderA, wanderB, fileName="", barrier=None, door=None):
-        super().__init__(position, fileName, barrier, door)
-        self.velocity = vec(0, 0)
-        self.wanderingRange = [wanderA, wanderB]
-        self.wandering = EnemyFSM(self, self.wanderingRange)
-        self.oldVelocity = vec(1, 1)
-        self.beSeen = 0
+        super().__init__(position, wanderA, wanderB,
+                         fileName, barrier, door)
+        self.canshoot = 0
+        self.bullet = 1
+        self.successKill = 0
 
     def update(self, seconds=None, map=None, kirbyPosition=None):
         ##print("are you there")
         ##print(self.position, self.velocity, "in inheriting pos an vel")
-        if (self.velocity[0] < -1):
-            self.flipImage[0] = True
-        elif (self.velocity[0] > 1):
-            self.flipImage[0] = False
-        super().update(seconds)
-        if (type(kirbyPosition) != type(None)):
-            self.wandering.update(map, kirbyPosition, seconds)
+
+        super().update(seconds, map, kirbyPosition)
+        # print("yo")
         pass
 
-    def catch(self, kirbyPosition, second):
-        kirbyRectangle = pygame.Rect(
-            *kirbyPosition, 16, 16)
-        myRectangle = pygame.Rect(self.position, 16, 16)
-        internsectionRect = pygame.Rect.clip(
-            kirbyRectangle, myRectangle)
-        if (internsectionRect):
-            return 1
-
-    def exit(self):
-        return super().exit()
+    def handleEvent(self, event):
+        super().handleEvent(event)
+        if event.type == KEYDOWN and event.key == K_s and self.bullet == 1:
+            print("shootTrigger")
+            self.bullet = 0
+            print("in handle", self.canshoot)
+            if (self.canshoot == 1):
+                self.successKill = 1
 
     def see(self, map, kirbyposition):
         barrierRect = map
@@ -45,21 +38,27 @@ class Inheriting(Controllable):
         kirbyRectangle = pygame.Rect(
             *kirbyPosition, 16, 16)  # not self.position
         rangetoward = [0, 0]
-        hozVel, verVel = self.velocity
+        widthHeight = [16, 16]
+        hozVel, verVel = self.oldVelocity
         ##print("velocity", self.velocity)
         if hozVel > 0:
-            rangetoward[0] = 32
+            rangetoward[0] = 16
+            widthHeight[0] = 64
         elif hozVel < 0:
-            rangetoward[0] = -32
+            rangetoward[0] = -64
+            widthHeight[0] = 64
         if verVel > 0:
-            rangetoward[1] = 32
+            rangetoward[1] = 16
+            widthHeight[1] = 64
         elif verVel < 0:
-            rangetoward[1] = -32
+            rangetoward[1] = -64
+            widthHeight[1] = 64
 
         ##print(rangetoward, "suppose to be 0")
-        originalTopLeft = self.position-vec(16, 16)
-        widthHeight = vec(16*3, 16*3)
+        originalTopLeft = self.position
+        widthHeight = vec(*widthHeight)
         rangetoward = vec(*rangetoward)
+
         noMeaningRectangle = pygame.Rect(*originalTopLeft, *widthHeight)
         detectionRectangle = rectAdd(rangetoward, noMeaningRectangle)
         # print(detectionRectangle)
@@ -68,7 +67,9 @@ class Inheriting(Controllable):
         if internsectionRect:
             for br in barrierRect:
                 if br.clipline(*self.position, *kirbyPosition):
-                    return 0
+                    ##print("hit the wall")
+                    return 0  # see why it returns these
             return 1
         else:
+            ###print("did not see enemy")
             return 0

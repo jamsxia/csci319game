@@ -20,8 +20,8 @@ class EnemyFSM(MovementFSM):
     """Axis-based acceleration with gradual stopping."""
     #not_moving = State(initial=True)
 
-    walking = State()
-    waiting = State(initial=True)
+    walking = State(initial=True)
+    waiting = State()
     chasing = State()
 
     #stalemate = State()
@@ -54,7 +54,7 @@ class EnemyFSM(MovementFSM):
         ##self.LastTime = time.perf_counter()
         super().__init__(obj)
 
-    def update(self, map, kirbyPosition, seconds=0):
+    def update(self, map, kirbyPosition=vec(-15, -15), seconds=0):
         '''
         if self == "positive":
             self.obj.velocity += self.direction * self.accel * seconds
@@ -72,21 +72,22 @@ class EnemyFSM(MovementFSM):
                 self.obj.velocity[self.axis] = 0
             '''
 
-        print(self.current_state.id)
+        # print(self.current_state.id)
         if self == "waiting":
             ##print(self.waitTimer, seconds)
             self.obj.velocity = vec(0, 0)
             # timeDiff=self.currentTime-self.LastTime
+
             self.waitTimer += seconds
             if self.waitTimer >= self.waitLimit:
-                print("stuck?")
+                # print("stuck?")
                 self.stopWaiting()
                 self.waitTimer = 0
                 self.nthTarget += 1
                 self.target = self.range[self.nthTarget % len(self.range)]
                 ##print("you are aiming for", self.target)
             if self.obj.see(map, kirbyPosition) == 1:
-                print("go chasing while in waiting")
+                ##print("go chasing while in waiting")
                 self.gochasing()
 
         elif self == "walking":
@@ -100,7 +101,7 @@ class EnemyFSM(MovementFSM):
                 self.stopWalking()
 
             if self.obj.see(map, kirbyPosition) == 1:
-                print("go chasing while in walking")
+                ##print("go chasing while in walking")
                 self.gochasing()
 
         elif self == "chasing":

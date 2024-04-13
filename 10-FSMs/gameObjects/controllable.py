@@ -20,7 +20,7 @@ class Controllable(Mobile):
 
         # Animation variables specific to Kirby
         self.framesPerSecond = 2
-        self.nFrames = 2
+        self.nFrames = 1
         self.inheriting = 0  # 0 means not activated ## 1 means activated 2 means inherited
         self.nFramesList = {
             "moving": 1,
